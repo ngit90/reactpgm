@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
 class Newcomp1 extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = { count: 0 };
     console.log('Constructor: Initialize state');
   }
@@ -28,6 +28,7 @@ class Newcomp1 extends Component {
     return (
       <div>
         <h1>Count: {this.state.count}</h1>
+        <h2>Data from : {this.props.countdata}</h2>
         <button onClick={() => this.setState({ count: this.state.count + 1 })}>
           Increment
         </button>

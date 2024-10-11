@@ -1,0 +1,33 @@
+.row {
+  color: white;
+  margin-left: 10px;
+}
+
+.row__posters {
+  display: flex;        
+  overflow-y: hidden;                      /* Use flexbox for horizontal layout */
+  overflow-x: scroll;              /* Allow horizontal scrolling */
+  /* Disable vertical scrolling */
+  padding: 20px;                 /* Padding around posters */
+  scroll-behavior: smooth;       /* Smooth scrolling effect */
+   
+}
+.row__posters::-webkit-scrollbar{
+  scrollbar-width: none;  
+}
+
+.row__poster {
+  max-height: 150px;            /* Set max height for posters */
+  object-fit: contain;          /* Maintain aspect ratio */
+  margin-right: 10px;           /* Space between posters */
+  cursor: pointer;              /* Pointer on hover */
+  transition: transform 450ms;  /* Animation effect */
+  border-radius: 5px;           /* Rounded corners */
+}
+
+
+
+.row__poster:hover {
+  transform: scale(1.08);       /* Zoom effect on hover */
+  opacity: 1;                   /* Ensure full opacity */
+}
