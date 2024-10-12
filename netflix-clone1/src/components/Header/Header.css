@@ -52,3 +52,26 @@ width: 100px;
  
   width: 30px;
 }
+.dropdown__list{
+  border: solid;
+  list-style-type: none;
+  background-color: black;
+  width: 10rem;
+  height: 10rem; 
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  top: 100%; /* Below the arrow */
+  left: 80%; /* Offset to the right of the arrow */
+
+}
+.dropdown__listitm{
+  font-size: 14px;
+  color: #ffff;
+  padding: 5px;
+
+}
+.dropdown__listitm:hover{
+ text-decoration: underline;
+ cursor: pointer;
+}

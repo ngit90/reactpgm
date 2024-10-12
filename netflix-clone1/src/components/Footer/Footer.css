@@ -12,14 +12,13 @@
  
   }
   .footer__links{
-    padding: 10px;/* Space between links */
+    padding: 5px;/* Space between links */
+    color: white;        
+    font-size: 12px;  /* Link color */
+    text-decoration: none;  /* Remove underline */
   }
-  .footer__links a {
-  color: white;        
-  font-size: 14px;  /* Link color */
-  text-decoration: none;  /* Remove underline */
-}
-.footer__links a:hover {
+ 
+.footer__links:hover {
   text-decoration: underline;       /* Change color on hover (Netflix red) */
 }
 .footer_btn{
@@ -39,5 +38,6 @@ padding-bottom: 1rem;
 .image-gallery__grid{
   margin-top: 2rem;
   width: 3rem;
+  cursor: pointer;
   height: 1.2rem;
 }

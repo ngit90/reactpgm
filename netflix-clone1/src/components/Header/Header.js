@@ -1,9 +1,18 @@
-import React from 'react'
+import React,{useState} from 'react'
 import './Header.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMagnifyingGlass, faBell, faCaretDown } from '@fortawesome/free-solid-svg-icons';
+import { faMagnifyingGlass, faBell, faCaretDown,faCaretUp } from '@fortawesome/free-solid-svg-icons';
+
 
 function Header() {
+
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  // Toggle dropdown when hovering over the arrow
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
   return (
 
     <div className="navbar" >
@@ -24,7 +33,31 @@ function Header() {
         <li className="navbar__item1" style={{color:'white',fontSize:16}}> Children</li>
         <li className="navbar__item1"><FontAwesomeIcon icon={faBell} style={{color:'white'}} /></li>
         <li className="navbar__item1"> <img className="avatar" src="/images/img1.png" alt="Avatar"/></li>
-        <li className="navbar__item1"><FontAwesomeIcon icon={faCaretDown} style={{color:'white'}} /></li>
+        <li className="navbar__item1"> 
+        <div
+          className="dropdown"
+          onMouseEnter={toggleDropdown}  // Show dropdown and change to up arrow
+          onMouseLeave={toggleDropdown}  // Hide dropdown and revert to down arrow
+        >
+          <div className="dropdown__title">
+            <FontAwesomeIcon
+              icon={isDropdownOpen ? faCaretUp : faCaretDown}  // Toggle arrow icons
+              className="dropdown__icon"
+            />
+          </div>
+
+          {/* Dropdown menu - visible on hover */}
+          {isDropdownOpen && (
+            <ul className="dropdown__list">
+              <li className="dropdown__listitm">Manage Profiles</li>
+              <li className="dropdown__listitm">Transfer Profile</li>
+              <li className="dropdown__listitm">Account</li>
+              <li className="dropdown__listitm">Help Center</li>
+              <li className="dropdown__listitm">Signout on Netflix</li>
+            </ul>
+          )}
+        </div>
+        </li>
       </ul>
 
     </div>
