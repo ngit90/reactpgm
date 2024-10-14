@@ -1,0 +1,40 @@
+.footerParentDiv {
+  width: 100%;
+}
+.footer__content {
+  display: flex;          /* Use flexbox for layout */
+  flex-direction: column; /* Stack items vertically */
+  background-color: lightgray;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+
+}
+.footer__links{
+  padding: 5px;/* Space between links */      
+  font-size: 12px;  /* Link color */
+  text-decoration: none;  /* Remove underline */
+  cursor: pointer;
+  color: gray;
+}
+
+.footer__links:hover {
+color: black;
+}
+
+.footerParentDiv .footer {
+ width: 100%;
+}
+
+.footer img{
+  width: 100%;
+}
+.footerpara {
+  background-color:rgb(19, 51, 49);
+  color: white;
+  font-size: 12px;
+  display: flex;
+  margin-left: 1rem;
+}
+.para2{
+  margin-left: 61rem;
+}
