@@ -53,14 +53,14 @@ function Header() {
           <hr />
         </div>
        {user && <span onClick={handlesignout} style={{cursor:'pointer'}}>Logout</span> } 
-
-        <div className="sellMenu">
+        <div  onClick={user ? ()=>{navigate('/create')} : ()=> navigate('/login') } className="sellMenu">
           <SellButton></SellButton>
           <div className="sellMenuContent">
             <SellButtonPlus></SellButtonPlus>
             <span>SELL</span>
           </div>
         </div>
+            
       </div>
     </div>
   );

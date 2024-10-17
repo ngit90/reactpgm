@@ -6,7 +6,7 @@ import { FirebaseContext } from '../../stores/Context';
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import { doc, setDoc } from "firebase/firestore";
-import{useNavigate} from 'react-router-dom';
+import{Link, useNavigate} from 'react-router-dom';
 
 export default function Signup() {
   const navigate = useNavigate();
@@ -36,10 +36,13 @@ export default function Signup() {
       Phone: Phone,
     }).then(()=> { navigate('/login')});
   } catch (error) {
-    alert(error.message);
-  }
+    if (error.code === 'auth/weak-password') {
+      alert('Password must be at least 6 characters long');
+    } else {
+      alert(error.message);
+    }
 }
-
+  }
   return (
     <div>
       <div className="signupParentDiv">
@@ -92,7 +95,7 @@ export default function Signup() {
           <br />
           <button type='sumbit'>Signup</button>
         </form>
-        <a href='/login' onClick={()=> navigate('/login')}>Login</a>
+        <Link to='/login'>Login</Link>
       </div>
     </div>
   );

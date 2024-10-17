@@ -1,14 +1,14 @@
-import React, { useState, useEffect,useRef } from 'react';
+import React, { useState, useEffect,useRef,useContext } from 'react';
 import axios from '../../axios';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { IconContext } from '../../AppContext';
 import './Row.css';
 
 const base_url = 'https://image.tmdb.org/t/p/original/';
 
 function Row({ title, fetchUrl }) {
   const [movies, setMovies] = useState([]);
-
+  const {FontAwesomeIcon} = useContext(IconContext);
   useEffect(() => {
     async function fetchData() {
       const request = await axios.get(fetchUrl);

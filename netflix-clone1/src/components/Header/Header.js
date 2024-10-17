@@ -1,13 +1,12 @@
-import React,{useState} from 'react'
+import React,{useState,useContext} from 'react'
 import './Header.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass, faBell, faCaretDown,faCaretUp } from '@fortawesome/free-solid-svg-icons';
-
+import { IconContext } from '../../AppContext';
 
 function Header() {
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
+  const {FontAwesomeIcon} = useContext(IconContext);
   // Toggle dropdown when hovering over the arrow
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);

@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from '../../axios';
 import requests from '../../requests';
 import './Banner.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { IconContext } from '../../AppContext';
 import { faInfoCircle,faPlay } from '@fortawesome/free-solid-svg-icons';
 
 
 function Banner() {
   const [movie, setMovie] = useState([]);
+  const {FontAwesomeIcon} = useContext(IconContext);
 
   useEffect(() => {
     async function fetchData() {

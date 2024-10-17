@@ -1,5 +1,5 @@
 import React, { useState,useContext } from 'react';
-import{useNavigate} from 'react-router-dom';
+import{Link, useNavigate} from 'react-router-dom';
 import { FirebaseContext } from '../../stores/Context';
 import Logo from '../../olx-logo.png';
 import { getAuth } from "firebase/auth";
@@ -56,7 +56,7 @@ function Login() {
           <br />
           <button type='submit'>Login</button>
         </form>
-        <a href='/signup' onClick={()=> navigate('/signup')}>Signup</a>
+        <Link to='/signup'>Signup</Link>
       </div>
     </div>
   );

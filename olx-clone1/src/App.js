@@ -2,6 +2,7 @@ import React,{useContext, useEffect} from 'react';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import Signup from './Pages/Signup';
 import Login from './Pages/Login';
+import Create from './Pages/Create';
 import { getAuth } from "firebase/auth";
 import { onAuthStateChanged } from "firebase/auth";
 import './App.css';
@@ -22,9 +23,10 @@ function App() {
     <div>
       <Router>
         <Routes>
-        <Route  exact path='/' Component={Home}/>
-        <Route path='/signup' Component={Signup}/>
-        <Route path='/login' Component={Login}/>
+        <Route  exact path='/' element={<Home />}/>
+        <Route path='/signup' element={<Signup />}/>
+        <Route path='/login' element={<Login />}/>
+        <Route path='/create' element={<Create />}/>
         </Routes>
       </Router>
     </div>

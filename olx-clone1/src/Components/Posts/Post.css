@@ -1,9 +1,3 @@
-.moreView {
-  margin: 16px 16px 24px;
-  padding: 16px 16px 32px;
-  background-color: #ebeeef;
-  border-radius: 4px;
-}
 
 .heading {
   display: flex;
@@ -16,29 +10,26 @@
   color: #002f34;
 }
 
-.heading :last-child {
-  font-size: 14px;
-  color: #002f34;
-}
-
 .recommendations .cards {
   display: flex;
+  margin-left: 3rem;
+  flex-wrap: wrap; /* Allows cards to wrap onto a new line */
+  padding: 2rem;
+ 
 }
 
-.moreView .cards {
-  white-space: nowrap;
-  overflow-x: scroll;
-  overflow-y: hidden;
-}
 
 .card {
-  margin-right: 15px;
+  margin: 1.5rem;
   padding: 13px;
-  max-width: 222px;
-  width: 222px;
+  width: 20%;
   height: 270px;
-  display: inline-block;
+
   cursor: pointer;
+}
+.card:hover{
+  transform: scale(1.5);       /* Zoom effect on hover */
+  opacity: 1;
 }
 
 .card .favorite {
@@ -84,4 +75,17 @@
 .recommendations .heading span {
   font-size: 24px;
   color: #002f34;
+}
+.postbtn{
+  background-color: white;
+  width: 7rem;
+  height: 3rem;
+  text-align: center;
+  font-weight: bold;
+  border-style: solid;
+  border-radius: 1rem;
+  margin-left: 37rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  cursor: pointer;
 }

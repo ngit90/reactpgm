@@ -1,11 +1,13 @@
-import React,{useState} from 'react'
+import React,{useState,useContext} from 'react';
+import { AppContext } from '../Appcontext';
 
 export default function Newcomp3({counter}) {
 
 const [datas,setDatas] = useState([]);
-
+const {check, setCheck} = useContext(AppContext);
 const clicker = () =>{
     setDatas([...datas,counter])
+    setCheck("its ok ")
 };
 
 

@@ -1,18 +1,18 @@
 import './App.css';
-import React,{useEffect, useState} from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
+import Samplecomp from './component/Samplecomp';
 
 function App() {
-
-  const [datas,setDatat] = useState(0);
-  useEffect(()=>{
-    console.log(datas);
-  },[datas]);
+ 
   return (
-    <div className="App">
-      <h1>Welcome new data</h1>
-
+    <div>
+           <h1> Welcome page  </h1>
+           
+        
+            <Samplecomp />
+         
     </div>
+  
   );
 }
-
 export default App;

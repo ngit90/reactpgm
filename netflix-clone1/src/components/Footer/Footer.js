@@ -1,11 +1,10 @@
 import React,{useContext} from 'react';
-import {AppContext} from '../../AppContext';
-import './Footer.css'; // Assuming you have a CSS file for styling
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import './Footer.css'; 
+import { IconContext } from '../../AppContext';
 import { faFacebookF, faInstagram, faTwitter,faYoutube } from '@fortawesome/free-brands-svg-icons';
 
 function Footer() {
-  const {fdata} = useContext(AppContext);
+  const {FontAwesomeIcon} = useContext(IconContext);
    return (
     <footer className="footer">
         <FontAwesomeIcon  className='image-gallery__grid' icon={faFacebookF} />
@@ -38,7 +37,7 @@ function Footer() {
        </div>
       </div>
       <div className="footer__bottom">
-        <p>{fdata} </p>
+        <p> © 2024 Netflix Clone </p>
       </div>
     </footer>
   );
