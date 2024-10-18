@@ -1,7 +1,6 @@
-import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react';
-import { AppContext } from '../Appcontext';
+import React from 'react';
 
- function Samplecomp({handlefun}) {
+ function Samplecomp() {
 
   return (
    
