@@ -1,9 +1,12 @@
 import { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import {useDispatch} from 'react-redux';
 import './Login.css';
+import { loggings } from "../../redux/authSlice";
 
 export default function Login() {
+    const dispatch = useDispatch();
     const [data, setData] = useState({ email: "", password: "" });
 	const [error, setError] = useState("");
 
@@ -13,9 +16,12 @@ export default function Login() {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+        console.log(`data for sent ${data.email} and ${data.password}`);
 		try {
-			const url = "http://localhost:8080/api/auth";
+			const url = "http://localhost:3009/api/auth";
 			const { data: res } = await axios.post(url, data);
+            console.log(res.data);
+            dispatch(loggings(res.data));
 			localStorage.setItem("token", res.data);
 			window.location = "/";
 		} catch (error) {
