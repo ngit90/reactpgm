@@ -11,13 +11,14 @@ const userSchema = new mongoose.Schema({
 });
 
 userSchema.methods.generateAuthToken = function () {
-	const token = jwt.sign({ _id: this._id, email:this.email }, process.env.JWTPRIVATEKEY, {
+	const token = jwt.sign({ _id: this._id, email:this.email,firstName:this.firstName,lastName:this.lastName }, process.env.JWTPRIVATEKEY, {
 		expiresIn: "7d",
 	});
 	return token;
 };
 
 const User = mongoose.model("users", userSchema);
+const Admin = mongoose.model("admins",userSchema);
 
 const validate = (data) => {
 	const schema = Joi.object({
@@ -29,4 +30,4 @@ const validate = (data) => {
 	return schema.validate(data);
 };
 
-module.exports = { User, validate };
+module.exports = { User, Admin, validate };

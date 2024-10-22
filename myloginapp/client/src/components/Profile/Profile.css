@@ -22,3 +22,15 @@
 	padding-right: 2rem;
 	padding-top: 1rem;
 }
+.containerprof{
+	border-style: solid;
+	display: block;
+	align-items: center;
+	justify-content: space-between;
+	width: 30rem;
+	border-radius: 1rem;
+	padding: 2rem;
+	margin-top: 5rem;
+	margin-left: 25rem;
+	text-align: center;
+}

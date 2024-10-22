@@ -1,11 +1,11 @@
 import { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import {useDispatch, useSelector} from 'react-redux';
-import './Login.css';
+import {useDispatch} from 'react-redux';
+import './AdminLogin.css';
 import { loggings } from "../../redux/authSlice";
 
-export default function Login() {
+export default function AdminLogin() {
 
     const dispatch = useDispatch();
     const [data, setData] = useState({ email: "", password: "" });
@@ -19,12 +19,12 @@ export default function Login() {
 		e.preventDefault();
         console.log(`data for sent ${data.email} and ${data.password}`);
 		try {
-			const url = "http://localhost:3009/api/auth";
+			const url = "http://localhost:3009/api/adminauth";
 			const { data: res } = await axios.post(url, data);
             console.log(res.data);
 			localStorage.setItem("token", res.data);
             dispatch(loggings(res.data));
-			window.location = "/";
+			window.location = "/admindash";
 		} catch (error) {
 			if (
 				error.response &&
@@ -35,12 +35,10 @@ export default function Login() {
 			}
 		}
 	};
-    const userdata = useSelector((state) => state.auth.user); // Select user data
-    console.log("User data from Redux:", userdata);
 
   return (
     <div className="container">
-    <section className="vh-100" style={{backgroundColor: '#a9eedd'}}>
+    <section className="vh-100" style={{backgroundColor: '#c890bc'}}>
         <div className="container py-5 h-100">
           <div className="row d-flex justify-content-center align-items-center h-100">
             <div className="col-12 col-md-8 col-lg-6 col-xl-5">
@@ -48,7 +46,7 @@ export default function Login() {
                 <div className="card-body p-4">
 
             <form  onSubmit={handleSubmit}>
-            <h2 className="text-center p-3">Login</h2>
+            <h2 className="text-center p-3">Admin Login</h2>
                 <input
                     type="email"
                     placeholder="Email"
@@ -74,15 +72,7 @@ export default function Login() {
             </form>
             <hr style={{backgroundColor:'red'}}/>
             <div className="lastsec">
-            <p className="newusr">New Here ?</p>
-            <Link to="/signup">
-                <button type="button" className="white_btn">
-                    Sing Up
-                </button>
-            </Link>         
-            </div>
-            <div>
-            <Link to='/adminlogin' style={{color:'red',fontSize:'1rem',fontWeight:'bold'}}>Admin Login</Link>
+            <Link to="/login" style={{color:'red',fontSize:'1rem',fontWeight:'bold'}}>User Login</Link>
             </div>
         </div>
         </div>

@@ -5,16 +5,24 @@ import {jwtDecode} from 'jwt-decode';
 const authSlice = createSlice({
     name: 'auth',
     initialState:{
-        user:null,
+        user: JSON.parse(localStorage.getItem("user")) || null,
     },
     reducers: {
         loggings:(state, action) =>{
             const decodedToken = jwtDecode(action.payload);
-            console.log("Decoded data:", decodedToken.email);
-            state.user = decodedToken; // Update state directly
+            localStorage.setItem("user", JSON.stringify(decodedToken));
+            //console.log("Decoded data:", decodedToken.email);
+            return {
+                ...state,
+                user: decodedToken, // Set the entire decoded token as user data
+            };
         },
         logouts:(state) =>{
-            state.user = null; // Clear user on logout
+            localStorage.removeItem("user");
+            return {
+                ...state,
+                user: null, // Clear user data on logout
+            };
         },
     },
 });

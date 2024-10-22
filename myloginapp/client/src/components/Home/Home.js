@@ -5,16 +5,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import { logouts } from "../../redux/authSlice";
 
 export default function Home() {
-  
-  //const token = localStorage.getItem("token");
-  const dispatch = useDispatch();
+    
   const userdata = useSelector((state) => state.auth.user);
   console.log("data from there",userdata);
-
+  const dispatch = useDispatch();
       
     const handleLogout = () => {
-    dispatch(logouts());
 		localStorage.removeItem("token");
+    dispatch(logouts());
     window.location = "/";
 	};
 
@@ -31,7 +29,7 @@ export default function Home() {
         </div>
     </nav>
     <div>
-            <h3>{userdata}</h3>
+           <h2 className='welcome'> "Welcome {userdata.firstName}  {userdata.lastName}"</h2>
     </div>
 </div>
   )
