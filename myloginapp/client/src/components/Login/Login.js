@@ -1,12 +1,11 @@
 import { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch } from 'react-redux';
 import './Login.css';
 import { loggings } from "../../redux/authSlice";
 
 export default function Login() {
-
     const dispatch = useDispatch();
     const [data, setData] = useState({ email: "", password: "" });
 	const [error, setError] = useState("");
@@ -35,8 +34,6 @@ export default function Login() {
 			}
 		}
 	};
-    const userdata = useSelector((state) => state.auth.user); // Select user data
-    console.log("User data from Redux:", userdata);
 
   return (
     <div className="container">

@@ -2,8 +2,24 @@ const router = require("express").Router();
 const { User } = require("../models/user");
 const bcrypt = require("bcrypt");
 const Joi = require("joi");
+require("dotenv").config();
+const jwt = require("jsonwebtoken");
 
-router.get("/find", async (req, res) => {
+const authMiddleware = (req, res, next) => {
+    const authHeader = req.headers['authorization'];
+    const token = authHeader.split(' ')[1];
+    
+    if (!token) return res.status(401).json({ message: 'Access Denied' });
+    try {
+        const verified = jwt.verify(token, process.env.JWTPRIVATEKEY);
+        req.user = verified;
+        next();
+    } catch (err) {
+        res.status(400).json({ message: 'Invalid Token' });
+    }
+};
+
+router.get("/find", authMiddleware, async (req, res) => {
 	try {
 		const users = await User.find();
 		if (!users)
@@ -14,7 +30,7 @@ router.get("/find", async (req, res) => {
 	}
 });
 
-router.get("/findone/:id", async (req, res) => {
+router.get("/findone/:id", authMiddleware, async (req, res) => {
 	try {
         const userId = req.params.id;
 		const user = await User.findOne({_id:userId});
@@ -26,7 +42,7 @@ router.get("/findone/:id", async (req, res) => {
 	}
 });
 
-router.put('/edit/:id', async (req, res) => {
+router.put('/edit/:id', authMiddleware, async (req, res) => {
     try {
         const userId = req.params.id;
         const updatedUser = await User.findByIdAndUpdate(userId, req.body, { new: true });
@@ -36,7 +52,7 @@ router.put('/edit/:id', async (req, res) => {
     }
 });
 
-router.delete('/delete/:id', async (req, res) => {
+router.delete('/delete/:id',authMiddleware,  async (req, res) => {
     try {
         const userId = req.params.id;
         const updatedUser = await User.findByIdAndDelete({_id:userId});

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import './AdminDash.css';
-import {  useDispatch} from 'react-redux';
+import {  useDispatch,useSelector} from 'react-redux';
 import { logouts } from "../../redux/authSlice";
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -10,22 +10,32 @@ export default function AdminDash() {
     const [users,setUsers] = useState([]);
     const [searchTerm, setSearchTerm] = useState(""); 
     const dispatch = useDispatch();
+    const token = useSelector((state) => state.auth.token);
+    console.log("token ok :",token);
 
-useEffect( ()=>{
-    async function fetchData(){
-        const url = "http://localhost:3009/api/admindash/find";
-        const response = await axios.get(url);
-        setUsers(response.data);
-        console.log(response.data);
-    }
-       fetchData();
-},[users]);
+const fetchData = async () => {
+    const url = "http://localhost:3009/api/admindash/find";
+    const response = await axios.get(url, {
+        headers: {
+            'Authorization': `Bearer ${token}`, // Add token to Authorization header
+        },
+    });
+    setUsers(response.data);
+}
 
+useEffect(()=>{
+    fetchData();
+})
 const handledelete = async (userid) => {
     try {
-        await axios.delete(`http://localhost:3009/api/admindash/delete/${userid}`);
-        //setUsers(users.filter(user => user._id !== userid));
-        navigate('/admindash');
+        await axios.delete(`http://localhost:3009/api/admindash/delete/${userid}`,{
+            headers: {
+                'Authorization': `Bearer ${token}`, // Add token to Authorization header
+            },
+        });
+        fetchData();
+        //setUsers((prevUsers) => prevUsers.filter(user => user._id !== userid));
+
     } catch (error) {
         console.error('Error updating user', error);
     }
@@ -33,7 +43,7 @@ const handledelete = async (userid) => {
 
  
 const handleLogout = () => {
-		localStorage.removeItem("token");
+	localStorage.removeItem("token");
     dispatch(logouts());
     window.location = "/adminlogin";
 };
@@ -60,7 +70,7 @@ const filteredUsers = users.filter((user) =>
            <div style={{ marginLeft: '17rem', marginBottom: '1rem' }}>
                     <input 
                         type="text" 
-                        placeholder="Search by Name" 
+                        placeholder="Search User by Name" 
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)} 
                         style={{ padding: '0.5rem', width: '40%', borderRadius:'0.5rem',marginLeft:'10rem'}}
@@ -84,11 +94,11 @@ const filteredUsers = users.filter((user) =>
                                         <td className="p-3">{user.firstName} {user.lastName}</td>
                                         <td className="p-3">{user.email}</td>
                                         <td className="p-4 ">
-                                            <button onClick={()=> navigate(`/admin/edit/${user._id}`)}>Edit</button>
+                                            <button className="dashbtn" onClick={()=> navigate(`/admin/edit/${user._id}`)}>Edit</button>
                                             
                                         </td>
                                         <td className="p-3">
-                                                <button className="btn-info" type="button" onClick={()=> handledelete(user._id)}>Delete</button>
+                                                <button className="dashbtn" style={{marginTop:'0.6rem'}} type="button" onClick={()=> handledelete(user._id)}>Delete</button>
                                         </td>
                                     </tr>
                                 ))

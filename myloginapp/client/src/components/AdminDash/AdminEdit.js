@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import {useSelector} from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 
-export default function EditUser() {
+export default function AdminEdit() {
     const [userData, setUserData] = useState({
         firstName: '',
         lastName: '',
@@ -11,19 +12,24 @@ export default function EditUser() {
     const { id } = useParams(); // Extract user ID from URL
     console.log("id",id);
     const navigate = useNavigate();
+    const token = useSelector((state) => state.auth.token);
 
     // Fetch user data based on ID
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                const response = await axios.get(`http://localhost:3009/api/admindash/findone/${id}`);
+                const response = await axios.get(`http://localhost:3009/api/admindash/findone/${id}`,{
+                    headers: {
+                        'Authorization': `Bearer ${token}`, // Add token to Authorization header
+                    },
+                });
                 setUserData(response.data);
             } catch (error) {
                 console.error("Error fetching user data", error);
             }
         };
         fetchUser();
-    }, [id]);
+    }, [id,token]);
 
     // Handle input change
     const handleChange = (e) => {
@@ -37,7 +43,11 @@ export default function EditUser() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.put(`http://localhost:3009/api/admindash/edit/${id}`, userData);
+            await axios.put(`http://localhost:3009/api/admindash/edit/${id}`, userData, {
+                headers: {
+                    'Authorization': `Bearer ${token}`, // Add token to Authorization header
+                },
+            });
             navigate('/admindash'); // Redirect to dashboard after successful update
         } catch (error) {
             console.error('Error updating user', error);

@@ -10,6 +10,7 @@ const userSchema = new mongoose.Schema({
 	password: { type: String, required: true },
 });
 
+
 userSchema.methods.generateAuthToken = function () {
 	const token = jwt.sign({ _id: this._id, email:this.email,firstName:this.firstName,lastName:this.lastName }, process.env.JWTPRIVATEKEY, {
 		expiresIn: "7d",

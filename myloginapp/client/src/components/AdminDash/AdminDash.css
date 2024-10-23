@@ -67,3 +67,10 @@
 	margin-top: 1rem;
 	font-weight: bold;
 }
+.dashbtn{
+	background-color: rgb(41, 90, 61);
+	width: 4rem;
+	border-color: white;
+	color: white;
+	font-weight: bold;
+}

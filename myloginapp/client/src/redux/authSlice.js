@@ -6,22 +6,25 @@ const authSlice = createSlice({
     name: 'auth',
     initialState:{
         user: JSON.parse(localStorage.getItem("user")) || null,
+        token:localStorage.getItem("token"),
     },
     reducers: {
         loggings:(state, action) =>{
             const decodedToken = jwtDecode(action.payload);
             localStorage.setItem("user", JSON.stringify(decodedToken));
-            //console.log("Decoded data:", decodedToken.email);
+            console.log("decoded data",decodedToken);
             return {
                 ...state,
-                user: decodedToken, // Set the entire decoded token as user data
+                user: decodedToken, 
+                token: action,
             };
         },
         logouts:(state) =>{
             localStorage.removeItem("user");
             return {
                 ...state,
-                user: null, // Clear user data on logout
+                user: null, 
+                token: null,
             };
         },
     },

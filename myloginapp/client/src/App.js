@@ -15,7 +15,7 @@ function App() {
 	return (
     <Router>
 		<Routes>
-			{user && <Route path="/"  exact element={<Home />} />}
+			{user && <Route path="/" exact element={<Home />} />}
 			{user && <Route path="/login"  exact element={<Home />} />}
 			<Route path="/signup" exact element={<Signup />} />
 			<Route path="/login" exact element={<Login />} />
@@ -26,6 +26,7 @@ function App() {
 			{user && <Route path="/profile" exact element={<Profile />} /> }
 			<Route path="/profile" element={<Navigate replace to="/login" />} />
 			<Route path="/" element={<Navigate replace to="/login" />} />
+			<Route path="/admindash" element={<Navigate replace to="/adminlogin" />} />
 			{user && <Route path="/admin/edit/:id" element={<AdminEdit />} />}
 		</Routes>
     </Router>

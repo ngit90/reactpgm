@@ -3,7 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import './AdminCreate.css';
 
-export default function Signup() {
+export default function AdminCreate() {
     const [data, setData] = useState({
 		firstName: "",
 		lastName: "",
