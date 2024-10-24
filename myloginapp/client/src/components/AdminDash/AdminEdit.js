@@ -20,7 +20,7 @@ export default function AdminEdit() {
             try {
                 const response = await axios.get(`http://localhost:3009/api/admindash/findone/${id}`,{
                     headers: {
-                        'Authorization': `Bearer ${token}`, // Add token to Authorization header
+                        'Authorization': `Bearer ${token.payload}`, // Add token to Authorization header
                     },
                 });
                 setUserData(response.data);
@@ -45,7 +45,7 @@ export default function AdminEdit() {
         try {
             await axios.put(`http://localhost:3009/api/admindash/edit/${id}`, userData, {
                 headers: {
-                    'Authorization': `Bearer ${token}`, // Add token to Authorization header
+                    'Authorization': `Bearer ${token.payload}`, // Add token to Authorization header
                 },
             });
             navigate('/admindash'); // Redirect to dashboard after successful update

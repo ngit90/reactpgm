@@ -5,8 +5,8 @@ import {jwtDecode} from 'jwt-decode';
 const authSlice = createSlice({
     name: 'auth',
     initialState:{
-        user: JSON.parse(localStorage.getItem("user")) || null,
-        token:localStorage.getItem("token"),
+        user : null,
+        token : null,
     },
     reducers: {
         loggings:(state, action) =>{

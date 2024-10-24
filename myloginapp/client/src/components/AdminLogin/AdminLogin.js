@@ -1,12 +1,12 @@
 import { useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {useDispatch} from 'react-redux';
 import './AdminLogin.css';
 import { loggings } from "../../redux/authSlice";
 
 export default function AdminLogin() {
-
+    const Navigate = useNavigate();
     const dispatch = useDispatch();
     const [data, setData] = useState({ email: "", password: "" });
 	const [error, setError] = useState("");
@@ -24,7 +24,8 @@ export default function AdminLogin() {
             console.log(res.data);
 			localStorage.setItem("token", res.data);
             dispatch(loggings(res.data));
-			window.location = "/admindash";
+			//window.location = "/admindash";
+            Navigate('/admindash');
 		} catch (error) {
 			if (
 				error.response &&

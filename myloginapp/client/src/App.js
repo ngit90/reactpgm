@@ -7,9 +7,11 @@ import AdminLogin from "./components/AdminLogin/AdminLogin";
 import AdminDash from "./components/AdminDash/AdminDash";
 import AdminEdit from "./components/AdminDash/AdminEdit";
 import AdminCreate from "./components/AdminDash/AdminCreate"
+import { useSelector } from "react-redux";
 
 function App() {
-	const user = localStorage.getItem("token");
+	//const user = localStorage.getItem("token");
+	const user = useSelector((state) => state.auth.token);
 	console.log(`user : ${user}`);
 
 	return (

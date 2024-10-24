@@ -15,9 +15,10 @@ export default function AdminDash() {
 
 const fetchData = async () => {
     const url = "http://localhost:3009/api/admindash/find";
+    console.log("token is ---- ",token.payload);
     const response = await axios.get(url, {
         headers: {
-            'Authorization': `Bearer ${token}`, // Add token to Authorization header
+            'Authorization': `Bearer ${token.payload}`, // Add token to Authorization header
         },
     });
     setUsers(response.data);
@@ -25,16 +26,17 @@ const fetchData = async () => {
 
 useEffect(()=>{
     fetchData();
-})
+},[users]);
 const handledelete = async (userid) => {
     try {
         await axios.delete(`http://localhost:3009/api/admindash/delete/${userid}`,{
             headers: {
-                'Authorization': `Bearer ${token}`, // Add token to Authorization header
+                'Authorization': `Bearer ${token.payload}`, // Add token to Authorization header
             },
         });
-        fetchData();
-        //setUsers((prevUsers) => prevUsers.filter(user => user._id !== userid));
+        //fetchData();
+        setUsers((prevUsers) => prevUsers.filter(user => user._id !== userid));
+        //window.location = "/adminlogin";
 
     } catch (error) {
         console.error('Error updating user', error);
@@ -49,9 +51,10 @@ const handleLogout = () => {
 };
 
 const filteredUsers = users.filter((user) =>
-    user.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    user.lastName.toLowerCase().includes(searchTerm.toLowerCase()) 
-);
+        user.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        user.lastName.toLowerCase().includes(searchTerm.toLowerCase()) 
+    );
+
 
   return (
     <div className="main_container">

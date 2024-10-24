@@ -1,12 +1,13 @@
 import { useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {useDispatch } from 'react-redux';
 import './Login.css';
 import { loggings } from "../../redux/authSlice";
 
 export default function Login() {
     const dispatch = useDispatch();
+    const Navigate = useNavigate();
     const [data, setData] = useState({ email: "", password: "" });
 	const [error, setError] = useState("");
 
@@ -23,7 +24,7 @@ export default function Login() {
             console.log(res.data);
 			localStorage.setItem("token", res.data);
             dispatch(loggings(res.data));
-			window.location = "/";
+            Navigate('/');
 		} catch (error) {
 			if (
 				error.response &&
