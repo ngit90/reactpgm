@@ -53,9 +53,11 @@
 }
 .editbtn{
 	background-color: green;
-	color:white;
-	margin-left: 5rem;
-	padding:0.25rem;
+	width: 7rem;
+	height: 2.5rem;
+	color: white;
+	border-radius: 0.25rem;
+	font-weight: bold;
 	margin-top: 1rem;
 }
 .createlink{
@@ -73,4 +75,14 @@
 	border-color: white;
 	color: white;
 	font-weight: bold;
+}
+.buttonback{
+	background-color: rgb(43, 66, 52);
+	width: 6rem;
+	height: 2.5rem;
+	color: white;
+	border-radius: 0.25rem;
+	font-weight: bold;
+	margin-left: 3rem;
+	margin-right: 2rem;
 }

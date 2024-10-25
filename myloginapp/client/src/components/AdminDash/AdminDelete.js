@@ -4,7 +4,7 @@ import {useSelector} from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 import './AdminDash.css';
 
-export default function AdminEdit() {
+export default function AdminDelete() {
     const [userData, setUserData] = useState({
         firstName: '',
         lastName: '',
@@ -40,11 +40,11 @@ export default function AdminEdit() {
         });
     };
 
-    // Handle form submit to update user
+    // Handle form submit to delete user
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.put(`http://localhost:3009/api/admindash/edit/${id}`, userData, {
+            await axios.delete(`http://localhost:3009/api/admindash/delete/${id}`, {
                 headers: {
                     'Authorization': `Bearer ${token.payload}`, // Add token to Authorization header
                 },
@@ -57,7 +57,7 @@ export default function AdminEdit() {
 
     return (
         <div className="edit-user-container">
-            <h2 style={{textAlign:'center',padding:'1rem'}}>Edit User</h2>
+            <h2 style={{textAlign:'center',padding:'1rem'}}>Confirm Delete </h2>
             <form onSubmit={handleSubmit}>
                 <div >
                     <label>First Name : </label>
@@ -66,7 +66,8 @@ export default function AdminEdit() {
                         name="firstName"
                         value={userData.firstName}
                         onChange={handleChange}
-                        style={{marginLeft:'1rem'}}
+                        style={{marginLeft:'1rem',backgroundColor:'lightgray'}}
+                        readOnly
                     />
                 </div>
                 <div>
@@ -76,7 +77,8 @@ export default function AdminEdit() {
                         name="lastName"
                         value={userData.lastName}
                         onChange={handleChange}
-                        style={{marginLeft:'1rem'}}
+                        style={{marginLeft:'1rem',backgroundColor:'lightgray'}}
+                        readOnly
                     />
                 </div>
                 <div>
@@ -86,11 +88,12 @@ export default function AdminEdit() {
                         name="email"
                         value={userData.email}
                         onChange={handleChange}
-                        style={{marginLeft:'2rem'}}
+                        style={{marginLeft:'2rem',backgroundColor:'lightgray'}}
+                        readOnly
                     />
                 </div>
                 <button onClick={()=> navigate('/admindash')} className='buttonback'> BACK...</button>
-                <button type="submit" className='editbtn' >Update User</button>
+                <button type="submit" className='editbtn' style={{width:'8rem'}}>Remove User</button>
             </form>
         </div>
     );

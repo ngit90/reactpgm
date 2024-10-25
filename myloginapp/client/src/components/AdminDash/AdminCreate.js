@@ -88,10 +88,12 @@ export default function AdminCreate() {
 							style={{backgroundColor:'#e4ccee'}}
 						/>
 						{error && <div className="error_msg">{error}</div>}
+				
 						<button type="submit" className="green_btn" style={{backgroundColor:'#d28eee'}}>
 							Sing Up
 						</button>
 					</form>
+					<button onClick={()=> navigate('/admindash')} className='buttonbackcreate'> BACK...</button>
 			</div>
 			</div>
 			</div>

@@ -11,7 +11,11 @@ router.post("/", async (req, res) => {
 			return res.status(400).send({ message: error.details[0].message });
 
 		const user = await Admin.findOne({ email: req.body.email });
+		//console.log(user);
 		if (!user)
+			return res.status(401).send({ message: "Invalid Email or Password" });
+
+		if(req.body.password !== user.password)
 			return res.status(401).send({ message: "Invalid Email or Password" });
 
 		const token = user.generateAuthToken();

@@ -11,7 +11,7 @@ import React, { useState, useCallback,useMemo} from 'react';
         for(let i=1;i<=n;i++)
           sumdata+=i;
         return sumdata;
-      },[]);
+      },[number]);
 
     const memoval = useMemo(()=> {
       const sum = (n)=> {

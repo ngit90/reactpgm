@@ -1,12 +1,12 @@
 const mongoose = require("mongoose");
 
 module.exports = () => {
-	const connectionParams = {
+	/*const connectionParams = {
 		useNewUrlParser: true,
 		useUnifiedTopology: true,
-	};
+	};*/
 	try {
-		mongoose.connect("mongodb://localhost:27017/mywebapp", connectionParams);
+		mongoose.connect("mongodb://localhost:27017/mywebapp");
 		console.log("Connected to database successfully");
 	} catch (error) {
 		console.log(error);

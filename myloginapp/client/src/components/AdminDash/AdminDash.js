@@ -26,22 +26,8 @@ const fetchData = async () => {
 
 useEffect(()=>{
     fetchData();
-},[users]);
-const handledelete = async (userid) => {
-    try {
-        await axios.delete(`http://localhost:3009/api/admindash/delete/${userid}`,{
-            headers: {
-                'Authorization': `Bearer ${token.payload}`, // Add token to Authorization header
-            },
-        });
-        //fetchData();
-        setUsers((prevUsers) => prevUsers.filter(user => user._id !== userid));
-        //window.location = "/adminlogin";
+},[]);
 
-    } catch (error) {
-        console.error('Error updating user', error);
-    }
-}
 
  
 const handleLogout = () => {
@@ -101,7 +87,7 @@ const filteredUsers = users.filter((user) =>
                                             
                                         </td>
                                         <td className="p-3">
-                                                <button className="dashbtn" style={{marginTop:'0.6rem'}} type="button" onClick={()=> handledelete(user._id)}>Delete</button>
+                                                <button className="dashbtn" style={{marginTop:'0.6rem'}} type="button" onClick={()=>navigate(`/admin/delete/${user._id}`)}>Delete</button>
                                         </td>
                                     </tr>
                                 ))

@@ -14,7 +14,6 @@ const authSlice = createSlice({
             localStorage.setItem("user", JSON.stringify(decodedToken));
             console.log("decoded data",decodedToken);
             return {
-                ...state,
                 user: decodedToken, 
                 token: action,
             };
@@ -22,7 +21,6 @@ const authSlice = createSlice({
         logouts:(state) =>{
             localStorage.removeItem("user");
             return {
-                ...state,
                 user: null, 
                 token: null,
             };

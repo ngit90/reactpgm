@@ -57,8 +57,8 @@ router.put('/edit/:id', authMiddleware, async (req, res) => {
 router.delete('/delete/:id',authMiddleware,  async (req, res) => {
     try {
         const userId = req.params.id;
-        const updatedUser = await User.findByIdAndDelete({_id:userId});
-        res.status(200).json(Userdeleted);
+        const deletedUser = await User.findByIdAndDelete(userId);
+        res.status(200).json({message : 'user deleted'});
     } catch (error) {
         res.status(500).json({ message: 'Error deleting user', error });
     }

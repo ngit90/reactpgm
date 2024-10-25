@@ -8,6 +8,7 @@ import AdminDash from "./components/AdminDash/AdminDash";
 import AdminEdit from "./components/AdminDash/AdminEdit";
 import AdminCreate from "./components/AdminDash/AdminCreate"
 import { useSelector } from "react-redux";
+import AdminDelete from "./components/AdminDash/AdminDelete";
 
 function App() {
 	//const user = localStorage.getItem("token");
@@ -30,6 +31,7 @@ function App() {
 			<Route path="/" element={<Navigate replace to="/login" />} />
 			<Route path="/admindash" element={<Navigate replace to="/adminlogin" />} />
 			{user && <Route path="/admin/edit/:id" element={<AdminEdit />} />}
+			{user && <Route path="/admin/delete/:id" element={<AdminDelete />} />}
 		</Routes>
     </Router>
 	);
