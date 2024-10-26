@@ -4,7 +4,7 @@ import { AppContext } from '../Appcontext';
 export default function Newcomp3({counter}) {
 
 const [datas,setDatas] = useState([]);
-const {check, setCheck} = useContext(AppContext);
+//const {check, setCheck} = useContext(AppContext);
 const clicker = () =>{
     setDatas([...datas,counter])
     setCheck("its ok ")

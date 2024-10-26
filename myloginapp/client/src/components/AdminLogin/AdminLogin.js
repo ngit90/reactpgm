@@ -22,9 +22,8 @@ export default function AdminLogin() {
 			const url = "http://localhost:3009/api/adminauth";
 			const { data: res } = await axios.post(url, data);
             console.log(res.data);
-			localStorage.setItem("token", res.data);
+			//localStorage.setItem("token", res.data);
             dispatch(loggings(res.data));
-			//window.location = "/admindash";
             Navigate('/admindash');
 		} catch (error) {
 			if (

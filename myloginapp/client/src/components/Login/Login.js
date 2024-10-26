@@ -22,7 +22,7 @@ export default function Login() {
 			const url = "http://localhost:3009/api/auth";
 			const { data: res } = await axios.post(url, data);
             console.log(res.data);
-			localStorage.setItem("token", res.data);
+			//localStorage.setItem("token", res.data);
             dispatch(loggings(res.data));
             Navigate('/');
 		} catch (error) {

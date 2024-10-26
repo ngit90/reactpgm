@@ -1,18 +1,12 @@
-import React, { useContext } from 'react';
-import { Newcontext } from '../Appcontext';
-import { useSelector } from 'react-redux';
+import React from 'react';
 
- function Samplecomp() {
-const {username} = useContext(Newcontext);
-const count = useSelector((state)=> state.counter.count);
-const value = useSelector((state)=> state.counter.value);
+
+function Samplecomp() {
+
   return (
-   
     <div>
-      <h2> Sample page....</h2>
-      <p> data from context : {username}</p>
-      <p> count : {count}</p>
-      <p> value : {value}</p>
+      <h2>Sample page..   . </h2>
+         
     </div>
   )
 }

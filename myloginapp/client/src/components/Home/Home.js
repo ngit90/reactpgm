@@ -1,19 +1,20 @@
 import React from 'react';
 import './Home.css';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logouts } from "../../redux/authSlice";
 
 export default function Home() {
-    
+  const Navigate = useNavigate();
   const userdata = useSelector((state) => state.auth.user);
   console.log("data from there",userdata);
   const dispatch = useDispatch();
       
     const handleLogout = () => {
-		localStorage.removeItem("token");
+		//localStorage.removeItem("token");
     dispatch(logouts());
-    window.location = "/";
+    //window.location = "/";
+    Navigate('/');
 	};
 
   return (

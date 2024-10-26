@@ -31,9 +31,9 @@ useEffect(()=>{
 
  
 const handleLogout = () => {
-	localStorage.removeItem("token");
+	//localStorage.removeItem("token");
     dispatch(logouts());
-    window.location = "/adminlogin";
+    navigate('/adminlogin');
 };
 
 const filteredUsers = users.filter((user) =>
