@@ -19,10 +19,10 @@ function App() {
     <Router>
 		<Routes>
 			{user && <Route path="/" exact element={<Home />} />}
-			{user && <Route path="/login"  exact element={<Home />} />}
+			{user && <Route path="/login"  element={<Navigate replace to="/" />} />}
 			<Route path="/signup" exact element={<Signup />} />
 			<Route path="/login" exact element={<Login />} />
-			{user && <Route path="/adminlogin" exact element={<AdminDash />} />}
+			{user && <Route path="/adminlogin" element={<Navigate replace to="/admindash" />} />}
 			<Route path="/adminlogin" exact element={<AdminLogin />} />
 			{user && <Route path="/admincreate" exact element={<AdminCreate />} />}
 			{user && <Route path="/admindash" exact element={<AdminDash />} />}
