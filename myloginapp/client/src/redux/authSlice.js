@@ -5,9 +5,9 @@ import {jwtDecode} from 'jwt-decode';
 const authSlice = createSlice({
     name: 'auth',
     initialState:{
-        user : null,
-        token : null,
-    },
+        user : null ,
+        token : null ,
+    },  
     reducers: {
         loggings:(state, action) =>{
             const decodedToken = jwtDecode(action.payload);
@@ -16,7 +16,7 @@ const authSlice = createSlice({
             console.log("decoded data",decodedToken);
             return {
                 user: decodedToken, 
-                token: action,
+                token: action ,
             };
         },
         logouts:(state) =>{
